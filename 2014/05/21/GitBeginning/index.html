@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="[&quot;zh-CN&quot;,&quot;en&quot;,&quot;default&quot;]"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Git入门指引 | Original Paradigm</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/normalize.css/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/pure-min.min.css"><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/purecss/build/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create','UA-39209952-2','auto');ga('send','pageview');
+</script><script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.js"></script><link rel="stylesheet" href="//cdn.jsdelivr.net/gh/codeseven/toastr/build/toastr.min.css"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Git入门指引</h1><a id="logo" href="/.">Original Paradigm</a><p class="description">Technical thinking</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-book"> 首页</i></a><a href="/categories/life/"><i class="fa fa-home"> 生活</i></a><a href="/categories/technology/"><i class="fa fa-linux"> 技术</i></a><a href="/categories/thinking/"><i class="fa fa-cloud"> 思考</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Git入门指引</h1><div class="post-meta">2014-05-21<span> | </span><span class="category"><a href="/categories/technology/">technology</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2014/05/21/GitBeginning/" href="/2014/05/21/GitBeginning/#disqus_thread"></a><div class="clear"><div class="toc-article" id="toc"><div class="toc-title">文章目录</div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#导言"><span class="toc-number">1.</span> <span class="toc-text">导言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是版本控制系统？"><span class="toc-number">2.</span> <span class="toc-text">什么是版本控制系统？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git又是什么？"><span class="toc-number">3.</span> <span class="toc-text">Git又是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#版本库是咋回事？"><span class="toc-number">4.</span> <span class="toc-text">版本库是咋回事？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#那么，Git怎么用？"><span class="toc-number">5.</span> <span class="toc-text">那么，Git怎么用？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#还能再给力点么？"><span class="toc-number">6.</span> <span class="toc-text">还能再给力点么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">7.</span> <span class="toc-text">最后</span></a></li></ol></div></div><div class="post-content"><blockquote>
+<p>本文面向<strong>初次</strong>接触版本控制系统的Git用户，旨在介绍一些关于版本控制和Git的简单概念。</p>
+<p>文中并不涉及过多的Git实际操作，文末推荐更多的Git学习资源。</p>
+</blockquote>
+<h3 id="导言"><a href="#导言" class="headerlink" title="导言"></a>导言</h3><p>Git是目前最先进的版本控制系统，拥有最多的用户数量并管理着数量庞大的实际软件项目；风靡全球的Github更是让Git版本控制系统名声大震。本文以“版本控制系统”为切入点，以国内的GitCafe平台为例，介绍相关概念和简单的Git用法。</p>
+<h3 id="什么是版本控制系统？"><a href="#什么是版本控制系统？" class="headerlink" title="什么是版本控制系统？"></a>什么是版本控制系统？</h3><p>如果对“版本控制”没有概念，那真是没法用Git。</p>
+<p>所以我们来看一个例子：假设大四毕业生小张在写毕业论文，写好初稿后经常删改，甚至还会在第二天把前一天删掉的东西找回来。如果他动点脑子，就不会只在一个文档中改来改去，而会在文件夹中有：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">毕业论文<span class="number">_</span>初稿.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>修改<span class="number">1</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>修改<span class="number">2</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>修改<span class="number">3</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>完整版<span class="number">1</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>完整版<span class="number">2</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>完整版<span class="number">3</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>最终版<span class="number">1</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>最终版<span class="number">2</span>.<span class="meta">doc</span></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<p>看起来是不是很郁闷啊？小张当然也郁闷了，因为自己总是改不好，所以他把自己的论文发给女朋友（是学霸），求帮忙；与此同时他自己也在继续修改。第二天就有了：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">毕业论文<span class="number">_</span>最终版<span class="number">3</span>.<span class="meta">doc</span></span><br><span class="line">毕业论文<span class="number">_</span>女友版<span class="number">1</span>.<span class="meta">doc</span></span><br></pre></td></tr></table></figure>
+<p>他女友毕竟是学霸，当然给他的论文做了比较大的修改，此时小张虽然看到了希望，但还要纠结着做一件事情：把上面两个版本的论文合并成：</p>
+<figure class="highlight ceylon"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">毕业论文<span class="number">_</span>死也不改版.<span class="meta">doc</span></span><br></pre></td></tr></table></figure>
+<p>等合并好，已是凌晨三点半。小张无比怨念：这样子真是没法和女友开心的玩耍了呢！</p>
+<p><strong>怎么办？</strong></p>
+<p>小张想，如果能有个什么东西来帮忙控制一下这该死的版本，那真是谢天谢地了！就像这样：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th style="text-align:left">修改人</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初稿</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">这是初稿</td>
+<td style="text-align:left">Day1</td>
+</tr>
+<tr>
+<td>修改1</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">修改目录</td>
+<td style="text-align:left">Day2</td>
+</tr>
+<tr>
+<td>修改2</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">合并段落</td>
+<td style="text-align:left">Day3</td>
+</tr>
+<tr>
+<td>……</td>
+<td style="text-align:left">……</td>
+<td style="text-align:left">……</td>
+<td style="text-align:left">……</td>
+</tr>
+<tr>
+<td>最终版2</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">xxx</td>
+<td style="text-align:left">Day7</td>
+</tr>
+<tr>
+<td>死也不改版</td>
+<td style="text-align:left">女友</td>
+<td style="text-align:left">bala</td>
+<td style="text-align:left">Day8</td>
+</tr>
+</tbody>
+</table>
+<p>这样就不用手动控制那么多版本啦！</p>
+<p><strong>所以，所谓“版本控制系统”，就是来解决这类问题的。</strong></p>
+<h3 id="Git又是什么？"><a href="#Git又是什么？" class="headerlink" title="Git又是什么？"></a>Git又是什么？</h3><p>没错，Git就是一个版本控制软件。在进行软件开发时，一个团队的人靠使用Git，就能轻松管理好项目版本，做好项目的追踪和辅助进度控制。确切的讲，Git是一款分布式版本控制系统。这个“分布式”，要和“集中式”放在一起理解。</p>
+<p>所谓“集中式版本控制”，就好比这一个团队中，<strong>版本库</strong>都集中在一台服务器上，每个开发者都要从服务器上获取最新的版本库后才能进行开发，开发完了再把新的版本提交回去。</p>
+<p>而“分布式版本控制”，则是这个团队中每个人的电脑上都会有一份完整的<strong>版本库</strong>，这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件A，你的同事也在他的电脑上改了文件A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。</p>
+<p>和集中式版本控制系统相比，分布式版本控制系统的安全性要高很多，因为每个人电脑里都有完整的版本库，某一个人的电脑坏掉了不要紧，随便从其他人那里复制一个就可以了。而集中式版本控制系统的中央服务器要是出了问题，所有人都没法干活了。</p>
+<p>在实际使用分布式版本控制系统的时候，其实很少在两人之间的电脑上推送版本库的修改，因为可能你们俩不在一个局域网内，两台电脑互相访问不了，也可能今天你的同事病了，他的电脑压根没有开机。因此，分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<h3 id="版本库是咋回事？"><a href="#版本库是咋回事？" class="headerlink" title="版本库是咋回事？"></a>版本库是咋回事？</h3><p>版本，不是文件的版本么？这个版本库是什么意思？</p>
+<p>如果能意识到控制的是文件的版本，那就离理解版本库只差一步了（最关键的一步）。</p>
+<p>程序要记录项目的版本号，最简单的方法就是把版本相关的信息放在某文件里，持续写入文件便视为版本更新。所以，当我们在一个目录中运行命令：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git init</span><br><span class="line"><span class="comment"># Git初始化的命令，用于新建版本库</span></span><br></pre></td></tr></table></figure>
+<p>这个目录中就会默认产生一个新目录：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">.git/</span></span><br></pre></td></tr></table></figure>
+<p>没错，这就是我们刚刚新建的版本库，它将默认记录当前目录（直接包含<code>.git</code>的这个目录，下文中叫做“项目目录”）中任何文件的改动。如果把这个版本库删除了，这里面记录的文件版本就都没有了，项目目录中的文件当前是什么样子，那就一直是什么样子，没法恢复到以前的版本了。如果想让Git忽视项目目录中的什么文件（比如程序缓存等），可以在<code>.gitignore</code>中写清楚那些文件。</p>
+<h3 id="那么，Git怎么用？"><a href="#那么，Git怎么用？" class="headerlink" title="那么，Git怎么用？"></a>那么，Git怎么用？</h3><p>在实际应用中，Git有非常多的用法，而本文是面向Git完全初学者，所以我们要从最基本的开始做。<br>比如，在刚才建好的版本库中，A新建了README文件，并在里面写了东西。写好后他想给项目做个版本，就需要这样：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="keyword">add</span><span class="bash"> README</span></span><br><span class="line">$ git commit -m <span class="string">"add README"</span></span><br></pre></td></tr></table></figure>
+<p>第一个命令是告诉Git要追踪什么文件，第二个命令是进行提交，并对此次提交做个简答说明。当然，今后他再对README做什么修改，都可以这样做。Git会自动为此次提交生成一个16进制的版本号。</p>
+<p>如果此时他查看本地的版本库，就会发现最新的一次提交是在刚才，提交说明为：<code>add README</code>。</p>
+<p>然后，他要把<strong>项目的版本库</strong>更新到GitCafe上，当然这时候项目本身已经在GitCafe上建立好了。他只需要：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">push</span> <span class="built_in">origin</span> master</span><br></pre></td></tr></table></figure>
+<p>这行命令应该这样理解：A已经在本地把项目最新的版本做好了，他要发到GitCafe上，以便团队里其他人都能收到这个新的版本，于是他运行<code>git push</code>；push的目的地是<code>origin</code>，这其实是个名字，意义为该项目在GitCafe上的地址；推送的是本地的<code>master</code>分支。</p>
+<p>这个时候，GitCafe上项目的版本号与A本地的最新版本号一致。</p>
+<blockquote>
+<p>分支是版本控制里面的一个概念：在项目做大了之后，如果要在原基础上进行扩展开发，最好新建一个分支，以免影响原项目的正常维护，新的分支开发结束后再与原来的项目分支合并；而在一个项目刚开始的时候，大家一般会在同一个分支下进行开发.这是一种相对安全便捷的开发方式。</p>
+</blockquote>
+<p>此时，小组里成员B对项目其他文件做了一些更改，同样也在本地做了一次提交，然后也想推到GitCafe上面。他运行了<code>git push origin master</code>命令，结果发现提交被拒绝。这要做如何解释？</p>
+<p>仔细想想，最开始的时候，A和B是在同一个版本号上做不同的更改，这就会分别衍生出两个不同的版本号。A先把自己的版本推到GitCafe上，此时GitCafe上的版本库与B本地版本库相比，差异很大，主要在于B这里没有A的版本记录，如果B这时把自己的版本强制<strong>同步</strong>到GitCafe上，就会把A的版本覆盖掉，这就出问题了。</p>
+<p>所以B进行了如下操作：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git pull</span><br></pre></td></tr></table></figure>
+<p>这样子，B先把GitCafe上的版本库和自己的版本库做一个合并，这个合并的意义在于：B通过GitCafe，把A刚才添加的版本加了进来，此时B本地的版本库是整个项目最新的，包括项目之前的版本、刚刚A添加的版本和B自己添加的版本。</p>
+<p>这之后，B再次运行<code>git push origin master</code>，成功地把自己的版本推到了GitCafe上。如果A想要推送新的版本，也要像B之前这样折腾一番才行。</p>
+<h3 id="还能再给力点么？"><a href="#还能再给力点么？" class="headerlink" title="还能再给力点么？"></a>还能再给力点么？</h3><p>当然可以！</p>
+<p>这里有两个在线代码托管平台：</p>
+<ul>
+<li><a href="https://github.com" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://gitcafe.com" target="_blank" rel="noopener">GitCafe</a></li>
+</ul>
+<p>还有一些优秀的Git在线资料：</p>
+<ul>
+<li><a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">Git使用简易指南</a></li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程-廖雪峰</a></li>
+<li><a href="https://gitcafe.com/grant/GitTips" target="_blank" rel="noopener">更多资料</a></li>
+</ul>
+<p>最后还有一本不错的中文书籍：</p>
+<ul>
+<li><a href="http://book.douban.com/subject/6526452/" target="_blank" rel="noopener">《Git权威指南》（蒋鑫）</a></li>
+</ul>
+<p>不过，本文就要到此为止了，因为再往下写就会涉及更多更深的Git操作实践，而这些内容在上面给出的资料中已经整理好。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>本文的目的在于解决身边乃至更多开发者同时入门版本控制和Git时候遇到的困惑，希望能对各位初学者起到积极的作用。</p>
+<p>如果您有更好的意见或建议，欢迎与我讨论：）</p>
+</div><div class="tags"><a href="/tags/git/"><i class="fa fa-tag"></i>git</a></div><div class="post-nav"><a class="pre" href="/2014/05/27/ux-designer/">UX Designer</a><a class="next" href="/2014/05/01/restful-web/">RESTful Web</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://blog.oripd.com/2014/05/21/GitBeginning/';
+    this.page.identifier = '2014/05/21/GitBeginning/';
+    this.page.title = 'Git入门指引';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//alvinqi.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//alvinqi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://alvinqi.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://blog.oripd.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/design/" style="font-size: 15px;">design</a> <a href="/tags/DFS/" style="font-size: 15px;">DFS</a> <a href="/tags/book/" style="font-size: 15px;">book</a> <a href="/tags/git/" style="font-size: 15px;">git</a> <a href="/tags/new-languages/" style="font-size: 15px;">new languages</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/rails/" style="font-size: 15px;">rails</a> <a href="/tags/REST/" style="font-size: 15px;">REST</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.neutronest.moe/" title="neutronest" target="_blank">neutronest</a><ul></ul><a href="https://ring0.me/" title="Ring0" target="_blank">Ring0</a><ul></ul><a href="https://blog.phoenixlzx.com/" title="Phoenix's island" target="_blank">Phoenix's island</a><ul></ul><a href="http://chenyuxiaodhr.github.io/" title="CdiajadeX's world" target="_blank">CdiajadeX's world</a><ul></ul><a href="http://www.tboox.org/" title="TBOX" target="_blank">TBOX</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2020 <a href="/." rel="nofollow">Original Paradigm.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox/dist/jquery.fancybox.min.css"><script type="text/javascript" src="/js/copycode.js" successtext="复制成功!"></script><link rel="stylesheet" type="text/css" href="/css/copycode.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
