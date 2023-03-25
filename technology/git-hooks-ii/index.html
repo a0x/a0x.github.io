@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html
+  lang="zh"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Git Hooks (II)：脚本分类 - 风沙星辰</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.285ffbef699dc9f3cf8dcb0803da149f8b646794b7f78a37380928daea2d746cd084512d0a3b592c47d0c71a18a88c7d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.7ecdf591e18d9b7d9a9acfee01f5545be9b15d3fb9a6235fc83f0f7b48df77c7d3fd123037395d75224bf17af86143c1.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39209952-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-39209952-2');
+</script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_180x180_fill_q75_box_center.jpg">
+
+<meta name="description"
+  content="通过示例理解Git Hooks">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Technologies",
+      "item":"./technology/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Git Hooks (II)：脚本分类",
+      "item":"./technology/git-hooks-ii/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "./technology/git-hooks-ii/"
+    },
+    "headline": "Git Hooks (II)：脚本分类 - 风沙星辰","datePublished": "2013-12-10T00:00:01+08:00",
+    "dateModified": "2013-12-10T00:00:01+08:00",
+    "wordCount":  2638 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "Yun LEE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.jpg"
+        }
+        },
+    "description": "通过示例理解Git Hooks"
+}
+</script><meta property="og:title" content="Git Hooks (II)：脚本分类 - 风沙星辰" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.jpg">
+
+
+<meta property="og:url" content="./technology/git-hooks-ii/" />
+
+
+
+<meta property="og:description" content="通过示例理解Git Hooks" />
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="风沙星辰" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2013-12-10T00:00:01&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2013-12-10T00:00:01&#43;08:00" />
+
+
+
+<meta property="article:section" content="technology" />
+
+
+<meta property="article:tag" content="git" />
+
+
+
+
+
+<meta property="og:see_also" content="./technology/git-hooks-i/" />
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">风沙星辰</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/technology/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🖳 技术堆栈</a>
+            <a href="/books/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🕮 书籍</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Git Hooks (II)：脚本分类</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2013-12-10</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>6分钟阅读时长</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="./categories/technology/" class="hover:text-eureka"
+          >technology</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <p>上篇中提到一个Git Hooks列表，如下：</p>
+<ul>
+<li>applypatch-msg</li>
+<li>pre-applypatch</li>
+<li>post-applypatch</li>
+<li>pre-commit</li>
+<li>prepare-commit-msg</li>
+<li>commit-msg</li>
+<li>post-commit</li>
+<li>pre-rebase</li>
+<li>post-checkout</li>
+<li>post-merge</li>
+<li>pre-receive</li>
+<li>update</li>
+<li>post-receive</li>
+<li>post-update</li>
+<li>pre-auto-gc</li>
+<li>post-rewrite</li>
+</ul>
+<p>这些脚本可以按照运行环境分为两类：本地Hooks与服务端Hooks。</p>
+<h3 id="client-side">Client Side</h3>
+<p>也就是上面提到的本地hooks。
+其实本地hooks还是占大多数的，可以给它们分成三类：</p>
+<ul>
+<li>commit hooks</li>
+<li>e-mail hooks</li>
+<li>其他</li>
+</ul>
+<h4 id="commit-hooks">Commit Hooks</h4>
+<p>与<code>git commit</code>相关的hooks一共有四个，均由<code>git commit</code>命令触发调用，按照一次发生的顺序分别是：</p>
+<ul>
+<li><code>pre-commit</code></li>
+<li><code>prepare-commit-msg</code></li>
+<li><code>commit-msg</code></li>
+<li><code>post-commit</code></li>
+</ul>
+<p>其中，<code>pre-commit</code>是最先触发运行的脚本。在提交一个commit之前，该hook有能力做许多工作，比如检查待提交东西的快照，以确保这份提交中没有缺少什么东西、文件名是否符合规范、是否对这份提交进行了测试、代码风格是否符合团队要求等等。
+这个脚本可以通过传递<code>--no-verify</code>参数而禁用，如果脚本运行失败（返回非零值），git提交就会被终止。</p>
+<p><code>prepare-commit-msg</code>脚本会在默认的提交信息准备完成后但编辑器尚未启动之前运行。
+这个脚本的作用是用来编辑commit的默认提交说明。
+该脚本有1~3个参数：包含提交说明文件的路径，commit类型（<code>message</code>, <code>template</code>, <code>merge</code>, <code>squash</code>），一个用于commit的SHA1值。这个脚本用的机会不是太多，主要是用于能自动生成commit message的情况。
+该不会因为<code>--no-verify</code>参数而禁用，如果脚本运行失败（返回非零值），git提交就会被终止。</p>
+<p><code>commit-msg</code>包含有一个参数，用来规定提交说明文件的路径。
+该脚本可以用来验证提交说明的规范性，如果作者写的提交说明不符合指定路径文件中的规范，提交就会被终止。
+该脚本可以通过传递<code>--no-verify</code>参数而禁用，如果脚本运行失败（返回非零值），git提交就会被终止。</p>
+<p><code>post-commit</code>脚本发生在整个提交过程完成之后。这个脚本不包含任何参数，也不会影响commit的运行结果，可以用于发送new commit通知。</p>
+<p>需要注意到，这几个脚本并不会通过clone传到项目中，而且既然是完全运行在本地，那就无法完全保证验证能起到作用（可以随便修改），但为了保证一些项目的可靠性，还需要开发者们自觉遵守这些规则。</p>
+<h4 id="e-mail-hooks">E-mail Hooks</h4>
+<p>与<code>git am</code>相关的脚本由三个，均由<code>git am</code>触发运行，按顺序依次是：</p>
+<ul>
+<li><code>applypatch-msg</code></li>
+<li><code>pre-applypatch</code></li>
+<li><code>post-applypaych</code></li>
+</ul>
+<p>如果在工作流中用不到这个命令，那也就无所谓了。不过，如果要用<code>git format-patch</code>命令通过Email提交补丁，这部分内容还是比较有用的。</p>
+<p><code>applypatch-msg</code>脚本最先被触发，它包含一个参数，用来规定提交说明文件的路径。该脚本可以修改文件中保存的提交说明，以便规范提交说明以符合项目标准。如果提交说明不符合规定的标准，脚本返回非零值，git终止提交。</p>
+<p>说明一点，这个脚本看上去和<code>commit-msg</code>作用几乎一样。没错，默认情况下该脚本是这样写的：</p>
+<pre><code class="language-bash">	#!/bin/sh
+	. git-sh-setup
+	test -x &quot;$GIT_DIR/hooks/commit-msg&quot; &amp;&amp;
+        exec &quot;$GIT_DIR/hooks/commit-msg&quot; ${1+&quot;$@&quot;}
+	:
+</code></pre>
+<p>也就是说，该脚本会调用<code>commit-msg</code>并执行。实际上，这一切都是可修改的。</p>
+<p><code>pre-applypatch</code>会在补丁应用后但尚未提交前运行。这个脚本没有参数，可以用于对应用补丁后的工作区进行测试，或对git tree进行检查。如果不能通过测试或检查，脚本返回非零值，git终止提交。
+同样需要注意，git提供的此默认脚本中只是简单调用了<code>pre-commit</code>，因此在实际工作中需要视情况修改。</p>
+<p><code>post-applypatch</code>脚本会在补丁应用并提交之后运行，它不包含参数，也不会影响git am的运行结果。该脚本可以用来向工作组成员或补丁作者发送通知。</p>
+<h4 id="其他hooks">其他Hooks</h4>
+<ul>
+<li><code>pre-rebase</code></li>
+</ul>
+<p>由<code>git rebase</code>命令调用，运行在rebase执行之前，可以用来阻止任何已发发生过的提交参与变基（字面意思，找不到合适的词汇了）。默认的<code>pre-rebase</code>确实是这么做的，不过脚本中的<code>next</code>是根据Git项目自身而写的分支名，在使用过程中应该将其改成自己的稳定分支名称。</p>
+<ul>
+<li><code>post-checkout</code></li>
+</ul>
+<p>由<code>git checkout</code>命令调用，在完成工作区更新之后执行。该脚本由三个参数：之前HEAD指向的引用，新的HEAD指向的引用，一个用于标识此次检出是否是分支检出的值（0表示文件检出，1表示分支检出）。</p>
+<p>也可以被<code>git clone</code>触发调用，除非在克隆时使用参数<code>--no-checkout</code>。在由clone调用执行时，三个参数分别为<code>null, 1, 1</code>。</p>
+<p>这个脚本可以用于为自己的项目设置合适的工作区，比如自动生成文档、移动一些大型二进制文件等，也可以用于检查版本库的有效性。</p>
+<ul>
+<li><code>post-merge</code></li>
+</ul>
+<p>由<code>git merge</code>调用，在merge成功后执行。该脚本有一个参数，标识合并是否为压缩合并。该脚本可以用于对一些Git无法记录的数据的恢复，比如文件权限、属主、ACL等。</p>
+<h3 id="server-side">Server Side</h3>
+<p>除了本地执行的Hooks脚本之外，还有一些放在Git Server上的Hooks脚本，作为管理员，可以利用这些服务端的脚本来强制确保项目的任何规范。这些运行在服务端的脚本，会在push命令发生的前后执行。<code>pre</code>系列的脚本可以在任何时候返回非零值来终止某次push，并向push方返回一个错误说明。</p>
+<p>这里简单介绍这几个脚本：</p>
+<ul>
+<li><code>pre-receive</code></li>
+</ul>
+<p>由服务器端的<code>git receive-pack</code>命令调用，当从本地版本库完成一个推送之后，远端服务器开始批量更新之前，该脚本被触发执行。该脚本会从标准输入中读入一连串push过来的引用，如果这里面存在任何非零值，这批更新将不会被服务器接受。可以利用这个脚本来检查推送过来的提交是否合法。</p>
+<ul>
+<li><code>post-receive</code></li>
+</ul>
+<p>由服务器端的<code>gir receive-pack</code>命令调用，当从本地版本库完成一个推送，并且在远程服务器上所有引用都更新完毕后执行。该脚本可以用于对其他镜像版本库的更新，或向用户发送提示（直接通过服务器端的echo命令）。如上文我提到的利用Git实现生产代码的自动化部署，就可以通过这个脚本完成。</p>
+<ul>
+<li><code>update</code>
+这是一个强大的hook脚本。它和<code>pre-recieve</code>有些类似，只是它会为推送过来的更新中涉及到的每一个分支都做一次检查，而后者则至始至终只有一次检查。另外，它不是从标准输入中读取数据，而是包含三个参数：
+<ul>
+<li>要更新的引用或分支的名称</li>
+<li>引用中保存的旧对象名称（SHA1）</li>
+<li>将要保存到引用中的新对象名称(SHA1)</li>
+</ul>
+</li>
+</ul>
+<p>如果检查到返回非零值，之后返回非零值的引用会被拒绝，其他正常的引用更新都会被接受。除此之外，该脚本还可以用来防止引用被强制更新，因为它可以通过这些参数来检查新旧引用对象中是否存在继承关系，从而提供更细致的推送授权。</p>
+<p>在Gitolite中，该脚本有更强大的应用实例。</p>
+<blockquote>
+<p>本篇完结，敬请期待后续……</p>
+</blockquote>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="./tags/git/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#git</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >上一页</span
+        >
+        <a href="./technology/deploy-rails-with-capistrano/" class="block">基于Capistrano工具的Rails程序部署方案</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一页</span>
+        <a href="./technology/git-hooks-i/" class="block">Git Hooks (I): 介绍</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>本页内容</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#client-side">Client Side</a>
+          <ul>
+            <li><a href="#commit-hooks">Commit Hooks</a></li>
+            <li><a href="#e-mail-hooks">E-mail Hooks</a></li>
+            <li><a href="#其他hooks">其他Hooks</a></li>
+          </ul>
+        </li>
+        <li><a href="#server-side">Server Side</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+      <div
+        class=" bg-secondary-bg prose col-span-2 rounded p-6 lg:col-span-6"
+      >
+        <h3>相关</h3>
+        
+          <a href="./technology/git-hooks-i/" class="no-underline">Git Hooks (I): 介绍</a>
+          <br />
+        
+      </div>
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://blog.oripd.com/">Original Paradigm</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" target="_blank" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" target="_blank" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

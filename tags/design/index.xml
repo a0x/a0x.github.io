@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design on 风沙星辰</title>
+    <link>./tags/design/</link>
+    <description>Recent content in design on 风沙星辰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 27 May 2014 00:00:00 +0800</lastBuildDate><atom:link href="./tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>UX Designer</title>
+      <link>./technology/ux-designer/</link>
+      <pubDate>Tue, 27 May 2014 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/ux-designer/</guid>
+      <description>感谢@WingWxy的热心指导。 在Web设计的实际流程中，处在设计这个工作线的人的职务主要有： 用户研究 用户体验师 交互设计师 视觉设计师 一般来说，学美术的</description>
+    </item>
+    
+  </channel>
+</rss>

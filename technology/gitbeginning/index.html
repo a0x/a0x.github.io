@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html
+  lang="zh"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Git入门指引 - 风沙星辰</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.285ffbef699dc9f3cf8dcb0803da149f8b646794b7f78a37380928daea2d746cd084512d0a3b592c47d0c71a18a88c7d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.7ecdf591e18d9b7d9a9acfee01f5545be9b15d3fb9a6235fc83f0f7b48df77c7d3fd123037395d75224bf17af86143c1.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39209952-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-39209952-2');
+</script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_180x180_fill_q75_box_center.jpg">
+
+<meta name="description"
+  content="一份新手友好的Git入门指南">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Technologies",
+      "item":"./technology/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Git入门指引",
+      "item":"./technology/gitbeginning/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "./technology/gitbeginning/"
+    },
+    "headline": "Git入门指引 - 风沙星辰","datePublished": "2014-05-21T00:00:00+08:00",
+    "dateModified": "2014-05-21T00:00:00+08:00",
+    "wordCount":  3235 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "Yun LEE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.jpg"
+        }
+        },
+    "description": "一份新手友好的Git入门指南"
+}
+</script><meta property="og:title" content="Git入门指引 - 风沙星辰" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.jpg">
+
+
+<meta property="og:url" content="./technology/gitbeginning/" />
+
+
+
+<meta property="og:description" content="一份新手友好的Git入门指南" />
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="风沙星辰" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2014-05-21T00:00:00&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2014-05-21T00:00:00&#43;08:00" />
+
+
+
+<meta property="article:section" content="technology" />
+
+
+<meta property="article:tag" content="git" />
+
+
+
+
+
+<meta property="og:see_also" content="./technology/git-hooks-ii/" />
+
+<meta property="og:see_also" content="./technology/git-hooks-i/" />
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">风沙星辰</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/technology/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🖳 技术堆栈</a>
+            <a href="/books/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🕮 书籍</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Git入门指引</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2014-05-21</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>7分钟阅读时长</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="./categories/technology/" class="hover:text-eureka"
+          >technology</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <blockquote>
+<p>本文面向<strong>初次</strong>接触版本控制系统的Git用户，旨在介绍一些关于版本控制和Git的简单概念。</p>
+<p>文中并不涉及过多的Git实际操作，文末推荐更多的Git学习资源。</p>
+</blockquote>
+<h3 id="导言">导言</h3>
+<p>Git是目前最先进的版本控制系统，拥有最多的用户数量并管理着数量庞大的实际软件项目；风靡全球的Github更是让Git版本控制系统名声大震。本文以“版本控制系统”为切入点，以Gitlab平台为例，介绍相关概念和简单的Git用法。</p>
+<h3 id="什么是版本控制系统">什么是版本控制系统？</h3>
+<p>如果对“版本控制”没有概念，那真是没法用Git。</p>
+<p>所以我们来看一个例子：假设大四毕业生小张在写毕业论文，写好初稿后经常删改，甚至还会在第二天把前一天删掉的东西找回来。如果他动点脑子，就不会只在一个文档中改来改去，而会在文件夹中有：</p>
+<pre><code>毕业论文_初稿.doc
+毕业论文_修改1.doc
+毕业论文_修改2.doc
+毕业论文_修改3.doc
+毕业论文_完整版1.doc
+毕业论文_完整版2.doc
+毕业论文_完整版3.doc
+毕业论文_最终版1.doc
+毕业论文_最终版2.doc
+……
+</code></pre>
+<p>看起来是不是很郁闷啊？小张当然也郁闷了，因为自己总是改不好，所以他把自己的论文发给朋友（是学霸），求帮忙；与此同时他自己也在继续修改。第二天就有了：</p>
+<pre><code>毕业论文_最终版3.doc
+毕业论文_学霸版1.doc
+</code></pre>
+<p>他朋友毕竟是学霸，当然给他的论文做了比较大的修改，此时小张虽然看到了希望，但还要纠结着做一件事情：把上面两个版本的论文合并成：</p>
+<pre><code>毕业论文_死也不改版.doc
+</code></pre>
+<p>等合并好，已是凌晨三点半。小张无比怨念！</p>
+<p><strong>怎么办？</strong></p>
+<p>小张想，如果能有个什么东西来帮忙控制一下这该死的版本，那真是谢天谢地了！就像这样：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th style="text-align:left">修改人</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">日期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初稿</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">这是初稿</td>
+<td style="text-align:left">Day1</td>
+</tr>
+<tr>
+<td>修改1</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">修改目录</td>
+<td style="text-align:left">Day2</td>
+</tr>
+<tr>
+<td>修改2</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">合并段落</td>
+<td style="text-align:left">Day3</td>
+</tr>
+<tr>
+<td>……</td>
+<td style="text-align:left">……</td>
+<td style="text-align:left">……</td>
+<td style="text-align:left">……</td>
+</tr>
+<tr>
+<td>最终版2</td>
+<td style="text-align:left">小张</td>
+<td style="text-align:left">xxx</td>
+<td style="text-align:left">Day7</td>
+</tr>
+<tr>
+<td>死也不改版</td>
+<td style="text-align:left">学霸</td>
+<td style="text-align:left">bala</td>
+<td style="text-align:left">Day8</td>
+</tr>
+</tbody>
+</table>
+<p>这样就不用手动控制那么多版本啦！</p>
+<p><strong>所以，所谓“版本控制系统”，就是来解决这类问题的。</strong></p>
+<h3 id="git又是什么">Git又是什么？</h3>
+<p>没错，Git就是一个版本控制软件。在进行软件开发时，一个团队的人靠使用Git，就能轻松管理好项目版本，做好项目的追踪和辅助进度控制。确切的讲，Git是一款分布式版本控制系统。这个“分布式”，要和“集中式”放在一起理解。</p>
+<p>所谓“集中式版本控制”，就好比这一个团队中，<strong>版本库</strong>都集中在一台服务器上，每个开发者都要从服务器上获取最新的版本库后才能进行开发，开发完了再把新的版本提交回去。</p>
+<p>而“分布式版本控制”，则是这个团队中每个人的电脑上都会有一份完整的<strong>版本库</strong>，这样，你工作的时候，就不需要联网了，因为版本库就在你自己的电脑上。既然每个人电脑上都有一个完整的版本库，那多个人如何协作呢？比方说你在自己电脑上改了文件A，你的同事也在他的电脑上改了文件A，这时，你们俩之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。</p>
+<p>和集中式版本控制系统相比，分布式版本控制系统的安全性要高很多，因为每个人电脑里都有完整的版本库，某一个人的电脑坏掉了不要紧，随便从其他人那里复制一个就可以了。而集中式版本控制系统的中央服务器要是出了问题，所有人都没法干活了。</p>
+<p>在实际使用分布式版本控制系统的时候，其实很少在两人之间的电脑上推送版本库的修改，因为可能你们俩不在一个局域网内，两台电脑互相访问不了，也可能今天你的同事病了，他的电脑压根没有开机。因此，分布式版本控制系统通常也有一台充当“中央服务器”的电脑，但这个服务器的作用仅仅是用来方便“交换”大家的修改，没有它大家也一样干活，只是交换修改不方便而已。</p>
+<h3 id="版本库是咋回事">版本库是咋回事？</h3>
+<p>版本，不是文件的版本么？这个版本库是什么意思？</p>
+<p>如果能意识到控制的是文件的版本，那就离理解版本库只差一步了（最关键的一步）。</p>
+<p>程序要记录项目的版本号，最简单的方法就是把版本相关的信息放在某文件里，持续写入文件便视为版本更新。所以，当我们在一个目录中运行命令：</p>
+<pre><code>$ git init
+# Git初始化的命令，用于新建版本库
+</code></pre>
+<p>这个目录中就会默认产生一个新目录：</p>
+<pre><code>.git/
+</code></pre>
+<p>没错，这就是我们刚刚新建的版本库，它将默认记录当前目录（直接包含<code>.git</code>的这个目录，下文中叫做“项目目录”）中任何文件的改动。如果把这个版本库删除了，这里面记录的文件版本就都没有了，项目目录中的文件当前是什么样子，那就一直是什么样子，没法恢复到以前的版本了。如果想让Git忽视项目目录中的什么文件（比如程序缓存等），可以在<code>.gitignore</code>中写清楚那些文件。</p>
+<p>而Git所记录的文件“版本”，是长这个样子的，运行<code>git log</code>命令：</p>
+<pre><code>commit 3a3b317144517fd95f4e3d1ffc27a9460242abc (HEAD -&gt; master, origin/master, origin/HEAD)
+Author: JohnDoe &lt;john.doe@foobar.com&gt;
+Date:   Sat Oct 9 15:33:37 2021 +0800
+
+    update
+
+commit 929cc40e8a6ef5d6449387801ad06cb5a15c0abc
+Author: JohnDoe &lt;john.doe@foobar.com&gt;
+Date:   Fri Dec 18 11:41:00 2020 +0800
+
+    add share helper
+
+commit 03f15d17ab7523128d92efb5c02770f68a094abc
+Author: JohnDoe &lt;john.doe@foobar.com&gt;
+Date:   Thu Dec 17 15:55:04 2020 +0800
+
+    add favicon as website ico of title
+
+commit 0836292ec6623aa0cb15c933e39f0210994b9abc
+Author: JohnDoe &lt;john.doe@foobar.com&gt;
+Date:   Thu Dec 17 15:16:00 2020 +0800
+
+    adjust categories
+
+...
+</code></pre>
+<p>这里面<code>commit</code>后面跟随的一长串MD5值，就是Git所记录的每一次改动的文件版本。</p>
+<h3 id="那么git怎么用">那么，Git怎么用？</h3>
+<p>在实际应用中，Git有非常多的用法，而本文是面向Git完全初学者，所以我们要从最基本的开始做。
+比如，在刚才建好的版本库中，A新建了README文件，并在里面写了东西。写好后他想给项目做个版本，就需要这样：</p>
+<pre><code>$ git add README
+$ git commit -m &quot;add README&quot;
+</code></pre>
+<p>第一个命令是告诉Git要追踪什么文件，第二个命令是进行提交，并对此次提交做个简答说明。当然，今后他再对README做什么修改，都可以这样做。Git会自动为此次提交生成一个16进制的版本号。</p>
+<p>如果此时他查看本地的版本库，就会发现最新的一次提交是在刚才，提交说明为：<code>add README</code>。</p>
+<p>此时，就已经使用<code>git commit</code>命令创建了一个文件版本记录，该版本被自动保存在本地的<strong>版本库</strong>中（<code>.git/</code>）。</p>
+<p>最后，他要把<strong>项目的版本库</strong>更新到Gitlab上，当然这时候项目本身已经在Gitlab上建立好了。他只需要：</p>
+<pre><code>$ git push origin main
+</code></pre>
+<p>这行命令应该这样理解：A已经在本地把项目最新的版本做好了，他要发到Gitlab上，以便团队里其他人都能收到这个新的版本，于是他运行<code>git push</code>；push的目的地是<code>origin</code>，这其实是个名字，意义为该项目在Gitlab上的地址；推送的是本地的<code>main</code>分支。</p>
+<p>这个时候，Gitlab上项目的版本号与A本地的最新版本号一致。</p>
+<blockquote>
+<p>分支是版本控制里面的一个概念：在项目做大了之后，如果要在原基础上进行扩展开发，最好新建一个分支，以免影响原项目的正常维护，新的分支开发结束后再与原来的项目分支合并；而在一个项目刚开始的时候，大家一般会在同一个分支下进行开发.这是一种相对安全便捷的开发方式。</p>
+</blockquote>
+<p>此时，小组里成员B对项目其他文件做了一些更改，同样也在本地做了一次提交，然后也想推到Gitlab上面。他运行了<code>git push origin main</code>命令，结果发现提交被拒绝。这要做如何解释？</p>
+<p>仔细想想，最开始的时候，A和B是在同一个版本号上做不同的更改，这就会分别衍生出两个不同的版本号。A先把自己的版本推到Gitlab上，此时Gitlab上的版本库与B本地版本库相比，差异很大，主要在于B这里没有A的版本记录，如果B这时把自己的版本强制<strong>同步</strong>到Gitlab上，就会把A的版本覆盖掉，这就出问题了。</p>
+<p>所以B进行了如下操作：</p>
+<pre><code>$ git pull
+</code></pre>
+<p>这样子，B先把Gitlab上的版本库和自己的版本库做一个合并，这个合并的意义在于：B通过Gitlab，把A刚才添加的版本加了进来，此时B本地的版本库是整个项目最新的，包括项目之前的版本、刚刚A添加的版本和B自己添加的版本。</p>
+<p>这之后，B再次运行<code>git push origin main</code>，成功地把自己的版本推到了Gitlab上。如果A想要推送新的版本，也要像B之前这样折腾一番才行。</p>
+<h3 id="还能再给力点么">还能再给力点么？</h3>
+<p>当然可以！</p>
+<p>这里有两个在线代码托管平台：</p>
+<ul>
+<li><a href="https://github.com" target="_blank" rel="noopener">Github</a>
+</li>
+<li><a href="https://Gitlab.com" target="_blank" rel="noopener">Gitlab</a>
+</li>
+</ul>
+<p>还有一些优秀的Git在线资料：</p>
+<ul>
+<li><a href="http://www.bootcss.com/p/git-guide/" target="_blank" rel="noopener">Git使用简易指南</a>
+</li>
+<li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="noopener">Git教程-廖雪峰</a>
+</li>
+<li><a href="https://Gitlab.com/grant/GitTips" target="_blank" rel="noopener">更多资料</a>
+</li>
+</ul>
+<p>最后还有一本不错的中文书籍：</p>
+<ul>
+<li><a href="http://book.douban.com/subject/6526452/" target="_blank" rel="noopener">《Git权威指南》（蒋鑫）</a>
+</li>
+</ul>
+<p>不过，本文就要到此为止了，因为再往下写就会涉及更多更深的Git操作实践，而这些内容在上面给出的资料中已经整理好。</p>
+<h3 id="最后">最后</h3>
+<p>本文的目的在于解决身边乃至更多开发者同时入门版本控制和Git时候遇到的困惑，希望能对各位初学者起到积极的作用。</p>
+<p>如果您有更好的意见或建议，欢迎与我讨论：）</p>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="./tags/git/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#git</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >上一页</span
+        >
+        <a href="./technology/ux-designer/" class="block">UX Designer</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一页</span>
+        <a href="./technology/restful-web/" class="block">RESTful Web</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>本页内容</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#导言">导言</a></li>
+        <li><a href="#什么是版本控制系统">什么是版本控制系统？</a></li>
+        <li><a href="#git又是什么">Git又是什么？</a></li>
+        <li><a href="#版本库是咋回事">版本库是咋回事？</a></li>
+        <li><a href="#那么git怎么用">那么，Git怎么用？</a></li>
+        <li><a href="#还能再给力点么">还能再给力点么？</a></li>
+        <li><a href="#最后">最后</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+      <div
+        class=" bg-secondary-bg prose col-span-2 rounded p-6 lg:col-span-6"
+      >
+        <h3>相关</h3>
+        
+          <a href="./technology/git-hooks-ii/" class="no-underline">Git Hooks (II)：脚本分类</a>
+          <br />
+        
+          <a href="./technology/git-hooks-i/" class="no-underline">Git Hooks (I): 介绍</a>
+          <br />
+        
+      </div>
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://blog.oripd.com/">Original Paradigm</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" target="_blank" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" target="_blank" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

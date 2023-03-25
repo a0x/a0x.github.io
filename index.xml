@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>风沙星辰</title>
+    <link>./</link>
+    <description>Recent content on 风沙星辰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Mon, 20 Mar 2023 00:00:00 +0800</lastBuildDate><atom:link href="./index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>每周新书-20230320</title>
+      <link>./books/20230320/</link>
+      <pubDate>Mon, 20 Mar 2023 00:00:00 +0800</pubDate>
+      
+      <guid>./books/20230320/</guid>
+      <description>本书单由北京万圣书园提供，请多多支持万圣书园网店： 万圣淘宝店 （或在淘宝店铺中搜索“万圣书园”也可） 万圣圣孔网 （或搜索店铺“北京万圣书园”也可） 万圣微店</description>
+    </item>
+    
+    <item>
+      <title>每周新书-20230313</title>
+      <link>./books/20230313/</link>
+      <pubDate>Mon, 13 Mar 2023 00:00:00 +0800</pubDate>
+      
+      <guid>./books/20230313/</guid>
+      <description>本书单由北京万圣书园提供，请多多支持万圣书园网店： 万圣淘宝店 （或在淘宝店铺中搜索“万圣书园”也可） 万圣圣孔网 （或搜索店铺“北京万圣书园”也可） 万圣微店</description>
+    </item>
+    
+    <item>
+      <title>每周新书-20230306</title>
+      <link>./books/20230306/</link>
+      <pubDate>Mon, 06 Mar 2023 00:00:00 +0800</pubDate>
+      
+      <guid>./books/20230306/</guid>
+      <description>本书单由北京万圣书园提供，请多多支持万圣书园网店： 万圣淘宝店 （或在淘宝店铺中搜索“万圣书园”也可） 万圣圣孔网 （或搜索店铺“北京万圣书园”也可） 万圣微店</description>
+    </item>
+    
+    <item>
+      <title>每周新书-20230130</title>
+      <link>./books/20230130/</link>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 +0800</pubDate>
+      
+      <guid>./books/20230130/</guid>
+      <description>本书单由北京万圣书园提供，请多多支持万圣书园网店： 万圣淘宝店 （或在淘宝店铺中搜索“万圣书园”也可） 万圣圣孔网 （或搜索店铺“北京万圣书园”也可） 万圣微店</description>
+    </item>
+    
+    <item>
+      <title>每周新书-20230116</title>
+      <link>./books/20230116/</link>
+      <pubDate>Mon, 16 Jan 2023 00:00:00 +0800</pubDate>
+      
+      <guid>./books/20230116/</guid>
+      <description>本书单由北京万圣书园提供，请多多支持万圣书园网店： 万圣淘宝店 （或在淘宝店铺中搜索“万圣书园”也可） 万圣圣孔网 （或搜索店铺“北京万圣书园”也可） 万圣微店</description>
+    </item>
+    
+    <item>
+      <title>快速上手新编程语言的概要</title>
+      <link>./technology/learning-new-program-language/</link>
+      <pubDate>Mon, 05 Dec 2016 12:20:36 +0000</pubDate>
+      
+      <guid>./technology/learning-new-program-language/</guid>
+      <description>语言应用层面 基本数据类型 类型系统 运算符 函数，方法，接口，包 编程范式 控制语句 数据结构及表示 并发模型 异常处理 文件处理 内置函数与基本库 构建工具 其他具有独自特</description>
+    </item>
+    
+    <item>
+      <title>Resources about distributed file system</title>
+      <link>./technology/dfs/</link>
+      <pubDate>Mon, 09 May 2016 16:36:01 +0000</pubDate>
+      
+      <guid>./technology/dfs/</guid>
+      <description>Wiki Clustered file system Category: Distributed file system Distributed file system (Microsoft) Distributed file system - TechNet Distributed file system - MSDN Books NFS Illustrated 1st Edition Papers &amp;amp; Conferences FAST (Usenix Conference on File and Storage Technologies) The collected works of Garth Gibson Scale and Performance in a Distributed Filesystem Separating data and control transfer in distributed operating systems Zebra Design and Implementation of the Sun Network Filesystem Disconnected Operation in the Coda Filesystem The Google File System Frangipani: A Scalable Distributed Filesystem CEPH: A Scalable, High-performance Distributed Filesystem Courses The 6.</description>
+    </item>
+    
+    <item>
+      <title>高效阅读源代码指南</title>
+      <link>./technology/how-to-read-open-project/</link>
+      <pubDate>Thu, 28 Apr 2016 14:09:17 +0000</pubDate>
+      
+      <guid>./technology/how-to-read-open-project/</guid>
+      <description>最近一年里，我阅读了不少开源项目的源代码，之前也和朋友讨论过阅读源代码时遇到的一些问题。我觉得有必要写一篇博文分享一下自己的经验。 序章：准备工作 通常情</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu 16.04 安装小记</title>
+      <link>./technology/ubuntu1604-installation/</link>
+      <pubDate>Sun, 24 Apr 2016 12:17:30 +0000</pubDate>
+      
+      <guid>./technology/ubuntu1604-installation/</guid>
+      <description>前言 Ubuntu大概是最容易安装的一个Linux发行版，因此本文并不是普通意义上的安装教程或新品尝鲜的感受。 本文针对的读者，是那些想在有双显卡（Int</description>
+    </item>
+    
+    <item>
+      <title>UX Designer</title>
+      <link>./technology/ux-designer/</link>
+      <pubDate>Tue, 27 May 2014 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/ux-designer/</guid>
+      <description>感谢@WingWxy的热心指导。 在Web设计的实际流程中，处在设计这个工作线的人的职务主要有： 用户研究 用户体验师 交互设计师 视觉设计师 一般来说，学美术的</description>
+    </item>
+    
+    <item>
+      <title>Git入门指引</title>
+      <link>./technology/gitbeginning/</link>
+      <pubDate>Wed, 21 May 2014 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/gitbeginning/</guid>
+      <description>本文面向初次接触版本控制系统的Git用户，旨在介绍一些关于版本控制和Git的简单概念。 文中并不涉及过多的Git实际操作，文末推荐更多的Git学习资源。</description>
+    </item>
+    
+    <item>
+      <title>RESTful Web</title>
+      <link>./technology/restful-web/</link>
+      <pubDate>Thu, 01 May 2014 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/restful-web/</guid>
+      <description>本文是Horizon第二次线下活动中“RESTful Web”讲题的总结，由Alvin Qi整理。 REST的全称是Representational State Tra</description>
+    </item>
+    
+    <item>
+      <title>基于Capistrano工具的Rails程序部署方案</title>
+      <link>./technology/deploy-rails-with-capistrano/</link>
+      <pubDate>Wed, 12 Feb 2014 17:40:30 +0000</pubDate>
+      
+      <guid>./technology/deploy-rails-with-capistrano/</guid>
+      <description>本文基于Capistrano 2版本，文中的命令不一定适用于Capistrano 3。 什么是Capistrano？ 简单地讲，Capistrano是一个ge</description>
+    </item>
+    
+    <item>
+      <title>Git Hooks (II)：脚本分类</title>
+      <link>./technology/git-hooks-ii/</link>
+      <pubDate>Tue, 10 Dec 2013 00:00:01 +0800</pubDate>
+      
+      <guid>./technology/git-hooks-ii/</guid>
+      <description>上篇中提到一个Git Hooks列表，如下： applypatch-msg pre-applypatch post-applypatch pre-commit prepare-commit-msg commit-msg post-commit pre-rebase post-checkout post-merge pre-receive update post-receive post-update pre-auto-gc post-rewrite 这些脚本可以按照运行环境分为两类：本地Hooks与服务端Hooks。 Client Side 也就</description>
+    </item>
+    
+    <item>
+      <title>Git Hooks (I): 介绍</title>
+      <link>./technology/git-hooks-i/</link>
+      <pubDate>Tue, 10 Dec 2013 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/git-hooks-i/</guid>
+      <description>最近我在尝试搭建一个利用Git直接部署生产代码的服务器，查了许多资料，了解到需要用到Git Hooks这一特性，就顺便看了一下。 什么是Git Hooks？</description>
+    </item>
+    
+    <item>
+      <title>书单 2013</title>
+      <link>./books/2013/</link>
+      <pubDate>Sat, 07 Dec 2013 00:00:00 +0800</pubDate>
+      
+      <guid>./books/2013/</guid>
+      <description>有朋友找我推荐一些计算机方面的书，我就总结了一下列出一份书单。 这份书单里提到的书大部分我读过，还有一少部分我没有认真读过而是随便翻看了一下，感觉很不错</description>
+    </item>
+    
+  </channel>
+</rss>

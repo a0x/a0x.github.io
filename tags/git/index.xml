@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on 风沙星辰</title>
+    <link>./tags/git/</link>
+    <description>Recent content in git on 风沙星辰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Wed, 21 May 2014 00:00:00 +0800</lastBuildDate><atom:link href="./tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git入门指引</title>
+      <link>./technology/gitbeginning/</link>
+      <pubDate>Wed, 21 May 2014 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/gitbeginning/</guid>
+      <description>本文面向初次接触版本控制系统的Git用户，旨在介绍一些关于版本控制和Git的简单概念。 文中并不涉及过多的Git实际操作，文末推荐更多的Git学习资源。</description>
+    </item>
+    
+    <item>
+      <title>Git Hooks (II)：脚本分类</title>
+      <link>./technology/git-hooks-ii/</link>
+      <pubDate>Tue, 10 Dec 2013 00:00:01 +0800</pubDate>
+      
+      <guid>./technology/git-hooks-ii/</guid>
+      <description>上篇中提到一个Git Hooks列表，如下： applypatch-msg pre-applypatch post-applypatch pre-commit prepare-commit-msg commit-msg post-commit pre-rebase post-checkout post-merge pre-receive update post-receive post-update pre-auto-gc post-rewrite 这些脚本可以按照运行环境分为两类：本地Hooks与服务端Hooks。 Client Side 也就</description>
+    </item>
+    
+    <item>
+      <title>Git Hooks (I): 介绍</title>
+      <link>./technology/git-hooks-i/</link>
+      <pubDate>Tue, 10 Dec 2013 00:00:00 +0800</pubDate>
+      
+      <guid>./technology/git-hooks-i/</guid>
+      <description>最近我在尝试搭建一个利用Git直接部署生产代码的服务器，查了许多资料，了解到需要用到Git Hooks这一特性，就顺便看了一下。 什么是Git Hooks？</description>
+    </item>
+    
+  </channel>
+</rss>

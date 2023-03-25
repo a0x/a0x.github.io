@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html
+  lang="zh"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Git Hooks (I): 介绍 - 风沙星辰</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.285ffbef699dc9f3cf8dcb0803da149f8b646794b7f78a37380928daea2d746cd084512d0a3b592c47d0c71a18a88c7d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.7ecdf591e18d9b7d9a9acfee01f5545be9b15d3fb9a6235fc83f0f7b48df77c7d3fd123037395d75224bf17af86143c1.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39209952-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-39209952-2');
+</script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_180x180_fill_q75_box_center.jpg">
+
+<meta name="description"
+  content="简单理解Git Hooks">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Technologies",
+      "item":"./technology/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Git Hooks (I): 介绍",
+      "item":"./technology/git-hooks-i/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "./technology/git-hooks-i/"
+    },
+    "headline": "Git Hooks (I): 介绍 - 风沙星辰","datePublished": "2013-12-10T00:00:00+08:00",
+    "dateModified": "2013-12-10T00:00:00+08:00",
+    "wordCount":  1020 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "Yun LEE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.jpg"
+        }
+        },
+    "description": "简单理解Git Hooks"
+}
+</script><meta property="og:title" content="Git Hooks (I): 介绍 - 风沙星辰" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.jpg">
+
+
+<meta property="og:url" content="./technology/git-hooks-i/" />
+
+
+
+<meta property="og:description" content="简单理解Git Hooks" />
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="风沙星辰" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2013-12-10T00:00:00&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2013-12-10T00:00:00&#43;08:00" />
+
+
+
+<meta property="article:section" content="technology" />
+
+
+<meta property="article:tag" content="git" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">风沙星辰</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/technology/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🖳 技术堆栈</a>
+            <a href="/books/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🕮 书籍</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Git Hooks (I): 介绍</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2013-12-10</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>3分钟阅读时长</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="./categories/technology/" class="hover:text-eureka"
+          >technology</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <p>最近我在尝试搭建一个利用Git直接部署生产代码的服务器，查了许多资料，了解到需要用到Git Hooks这一特性，就顺便看了一下。</p>
+<h3 id="什么是git-hooks">什么是Git Hooks？</h3>
+<p>话说，如同其他许多的版本控制系统一样，Git也具有在特定事件发生<strong>之前</strong>或<strong>之后</strong>执行特定脚本代码功能（从概念上类比，就与监听事件、触发器之类的东西类似）。Git Hooks就是那些在Git执行特定事件（如commit、push、receive等）后触发运行的脚本。</p>
+<p>按照Git Hooks脚本所在的位置可以分为两类：</p>
+<ul>
+<li>本地Hooks，触发事件如commit、merge等。</li>
+<li>服务端Hooks，触发事件如receive等。</li>
+</ul>
+<h3 id="git-hooks能做什么">Git Hooks能做什么？</h3>
+<p>Git Hooks是定制化的脚本程序，所以它实现的功能与相应的git动作相关；在实际工作中，Git Hooks还是相对比较万能的。下面仅举几个简单的例子：</p>
+<ul>
+<li>pre-commit: 检查每次的commit message是否有拼写错误，或是否符合某种规范。</li>
+<li>pre-receive: 统一上传到远程库的代码的编码。</li>
+<li>post-receive: 每当有新的提交的时候就通知项目成员（可以使用Email或SMS等方式）。</li>
+<li>post-receive: 把代码推送到生产环境。（这就是我想要做的）</li>
+<li>etc&hellip;</li>
+</ul>
+<p>更多的功能可以按照生产环境的需求写出来。</p>
+<h3 id="git-hooks是如何工作的">Git Hooks是如何工作的？</h3>
+<p>每一个Git repo下都包含有<code>.git/hoooks</code>这个目录（没错，本地和远程都是这样），这里面就是放置Hooks的地方。你可以在这个目录下自由定制Hooks的功能，当触发一些Git行为时，相应地Hooks将被执行。</p>
+<p>这里是一个Git Hooks列表，现在如果觉得不是很明白，不用担心，以后我会继续讲：</p>
+<ul>
+<li>applypatch-msg</li>
+<li>pre-applypatch</li>
+<li>post-applypatch</li>
+<li>pre-commit</li>
+<li>prepare-commit-msg</li>
+<li>commit-msg</li>
+<li>post-commit</li>
+<li>pre-rebase</li>
+<li>post-checkout</li>
+<li>post-merge</li>
+<li>pre-receive</li>
+<li>update</li>
+<li>post-receive</li>
+<li>post-update</li>
+<li>pre-auto-gc</li>
+<li>post-rewrite</li>
+</ul>
+<p><img src="git-hooks-i-1.png" alt="">
+图中是我一个本地repo的git hooks示例。</p>
+<h3 id="如何开始使用git-hooks">如何开始使用Git Hooks？</h3>
+<p>好了，前面啰嗦一大堆，这里才是重点。</p>
+<p>如图中所示的文件，是由本地执行的脚本语言写成的，尽管这些文件默认会是<code>Shell Script</code>，你完全可以给它替换成自己喜欢的<code>Ruby</code>，<code>Python</code>或者<code>Perl</code>。</p>
+<p>举个例子，它是这个样子的：</p>
+<p><img src="git-hooks-i-1.png" alt=""></p>
+<p>关于这些脚本文件的命名，细心的读者就会发现图中的文件都是上面Git行为列表中列出的名称加上后缀<code>.sample</code>。没错就是这样，把那些文件的后缀去掉，或者以列表中的名字直接命名，就会把该脚本绑定到特定的Git行为上。</p>
+<p>所以说，Git Hooks的正确操作方式是：写脚本。</p>
+<h3 id="git-hooks项目介绍">Git Hooks项目介绍</h3>
+<ul>
+<li><a href="https://npmjs.org/package/node-hooks" target="_blank" rel="noopener">node-hooks</a>
+: 一个命令行下的Git Hooks管理工具</li>
+<li><a href="https://github.com/icefox/git-hooks" target="_blank" rel="noopener">git-hooks</a>
+: 一个全面的Git Hooks管理工具</li>
+<li><a href="http://search.cpan.org/dist/Git-Hooks/" target="_blank" rel="noopener">Git::Hooks</a>
+: 一个实现Git Hooks的框架</li>
+<li>etc&hellip;</li>
+</ul>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="./tags/git/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#git</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >上一页</span
+        >
+        <a href="./technology/git-hooks-ii/" class="block">Git Hooks (II)：脚本分类</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>本页内容</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是git-hooks">什么是Git Hooks？</a></li>
+        <li><a href="#git-hooks能做什么">Git Hooks能做什么？</a></li>
+        <li><a href="#git-hooks是如何工作的">Git Hooks是如何工作的？</a></li>
+        <li><a href="#如何开始使用git-hooks">如何开始使用Git Hooks？</a></li>
+        <li><a href="#git-hooks项目介绍">Git Hooks项目介绍</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://blog.oripd.com/">Original Paradigm</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" target="_blank" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" target="_blank" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>

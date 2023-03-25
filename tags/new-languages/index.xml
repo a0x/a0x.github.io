@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>new languages on 风沙星辰</title>
+    <link>/tags/new-languages/</link>
+    <description>Recent content in new languages on 风沙星辰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Mon, 05 Dec 2016 12:20:36 +0000</lastBuildDate><atom:link href="/tags/new-languages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习新编程语言的套路</title>
+      <link>/technology/learning-new-program-language/</link>
+      <pubDate>Mon, 05 Dec 2016 12:20:36 +0000</pubDate>
+      
+      <guid>/technology/learning-new-program-language/</guid>
+      <description>语言应用层面 基本数据类型 类型系统 运算符 函数，方法，接口，包 编程范式 控制语句 数据结构及表示 并发模型 异常处理 文件处理 内置函数与基本库 构建工具 其他具有独自特</description>
+    </item>
+    
+  </channel>
+</rss>

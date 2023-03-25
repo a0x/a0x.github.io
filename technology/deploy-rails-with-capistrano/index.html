@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html
+  lang="zh"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>基于Capistrano工具的Rails程序部署方案 - 风沙星辰</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.285ffbef699dc9f3cf8dcb0803da149f8b646794b7f78a37380928daea2d746cd084512d0a3b592c47d0c71a18a88c7d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.7ecdf591e18d9b7d9a9acfee01f5545be9b15d3fb9a6235fc83f0f7b48df77c7d3fd123037395d75224bf17af86143c1.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-39209952-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'UA-39209952-2');
+</script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_180x180_fill_q75_box_center.jpg">
+
+<meta name="description"
+  content="本文基于Capistrano 2版本，文中的命令不适用于Capistrano 3">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Technologies",
+      "item":"./technology/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"基于Capistrano工具的Rails程序部署方案",
+      "item":"./technology/deploy-rails-with-capistrano/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "./technology/deploy-rails-with-capistrano/"
+    },
+    "headline": "基于Capistrano工具的Rails程序部署方案 - 风沙星辰","datePublished": "2014-02-12T17:40:30+00:00",
+    "dateModified": "2014-02-12T17:40:30+00:00",
+    "wordCount":  2335 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "Yun LEE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.jpg"
+        }
+        },
+    "description": "本文基于Capistrano 2版本，文中的命令不适用于Capistrano 3"
+}
+</script><meta property="og:title" content="基于Capistrano工具的Rails程序部署方案 - 风沙星辰" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.jpg">
+
+
+<meta property="og:url" content="./technology/deploy-rails-with-capistrano/" />
+
+
+
+<meta property="og:description" content="本文基于Capistrano 2版本，文中的命令不适用于Capistrano 3" />
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="风沙星辰" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2014-02-12T17:40:30&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2014-02-12T17:40:30&#43;00:00" />
+
+
+
+<meta property="article:section" content="technology" />
+
+
+<meta property="article:tag" content="rails" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">风沙星辰</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/technology/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🖳 技术堆栈</a>
+            <a href="/books/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🕮 书籍</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">基于Capistrano工具的Rails程序部署方案</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2014-02-12</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>5分钟阅读时长</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="./categories/technology/" class="hover:text-eureka"
+          >technology</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <blockquote>
+<p>本文基于Capistrano 2版本，文中的命令不一定适用于Capistrano 3。</p>
+</blockquote>
+<h1 id="什么是capistrano">什么是Capistrano？</h1>
+<p>简单地讲，Capistrano是一个<code>gem</code>。对于不太熟悉Ruby的朋友来说，<code>gem</code>就是一套按照一定规范打包好的Ruby代码，可以类比Java里面的Package。</p>
+<p>实际上，Capistrano是专门用来部署rails程序的一套工具。</p>
+<h1 id="为什么用它">为什么用它？</h1>
+<p>Rails应用程序的部署方案十分灵活，适应于不同的生产服务器场景。在实际生产中，rails程序中包含的各类gem和生产服务器上的gem往往版本不一致，这就为部署增加了一些难度。</p>
+<p>利用Capistrano进行部署，就能很容易解决这个问题。同时，使用Capistrano部署rails程序，更有一种“敏捷”的感觉。</p>
+<p>在进行Rails开发过程中，一个重要的工具就是版本控制，而我们经常用Git。用过Heroku的开发者，或者有静态博客的朋友都能感受到一点——把版本控制与部署方案融合到一起非常方便。幸运的是，Capistrano对包括Git在内的各类版本控制有非常好的支持。本文中，我将使用Git作为版本控制软件，与Capistrano一起工作，进行项目部署。</p>
+<h1 id="如何部署">如何部署？</h1>
+<p>利用Capistrano部署Rails程序，可以分为下面四个步骤。</p>
+<ul>
+<li>配置部署服务器</li>
+<li>对应用程序进行版本控制</li>
+<li>远程部署应用程序</li>
+<li>版本控制推进部署</li>
+</ul>
+<h2 id="配置部署服务器">配置部署服务器</h2>
+<blockquote>
+<p>对生产服务器的基本配置，包括Web静态服务器、数据库、版本控制搭建、防火墙等的控制不在本文讨论范围内。它们之中任何一点拿出来都够写一本书了。</p>
+</blockquote>
+<p>首先，要在部署服务器可以访问到的地方创建一个新的版本库。</p>
+<p>读者可以在公司/实验室里搭建GitLab，或者连接到GitHub上。如果是自己搭建GitLab，其实完全可以把Git服务器和生产服务器放在同一台机器上。可以通过以下命建立Server端的远程版本库，也可以通过访问Git服务器的Web界面自行操作。</p>
+<pre><code>$ mkdir -p ~/git/project.git
+$ cd ~/git/project.git
+$ git --bare init
+</code></pre>
+<p>值得注意的是，即使是把Git Server和Web Server放在同一台机器上，Capistrano也是通过Web服务的形式访问Git。这里可以配置公钥来简化整个流程。</p>
+<pre><code>$ test -e ~/.ssh/id_dsa.pub || ssh-keygen -t dsa
+$ cat ~/.ssh/id_dsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre>
+<p>还有一件非常重要的事情：Capistrano将在应用程序目录名和Rails子目录中插入名为<code>current</code>的目录，其中包括<code>public</code>子目录。在用Capistrano部署好的项目中，目录结构类似下面的样子（<code>current</code>是当前部署的版本，<code>releases</code>是该分支下根据版本生成的曾经的项目，<code>shared</code>中是各个版本共享的资源）：</p>
+<pre><code>$ ls project
+&gt; current  releases  shared
+</code></pre>
+<p>而这个<code>public</code>目录就是我们熟悉的Rails程序中静态资源目录；也就是说，不论你用Apache或Ngnix还是其他Web服务器来部署静态资源，需要把这个目录设置为根目录。以Apache配置为例：</p>
+<pre><code>DocumentRoot /home/project/current/public/
+</code></pre>
+<p>到此为止，对服务器的预先配置就已经完成了，接下来的工作都可以在开发环境中完成。</p>
+<h2 id="对应用进行版本控制">对应用进行版本控制</h2>
+<p>最开始，要在项目的Gemfile中加入Capistrano gem：</p>
+<pre><code>...
+gem 'capistrano'
+...
+</code></pre>
+<p>然后执行命令<code>bundle install</code>来安装gem。接下来执行一条很重要的命令，它的作用是把项目中用到的gem及其版本号都记录下来：</p>
+<pre><code>$ bundle pack
+
+//然后可以做一个版本记录，并推送到远程库
+$ git add .
+$ git commit -m &quot;install capistrano &amp; bundle gems&quot;
+$ git push origin master
+</code></pre>
+<p>以上，已经完成了项目gem整理。接下来我们要把项目代码放入生产环境。</p>
+<h2 id="远程部署应用程序">远程部署应用程序</h2>
+<p>接下来的过程，我们可以先猜测一下：</p>
+<ul>
+<li>把代码pull到服务器的DocumentRoot</li>
+<li>在生产服务器上生成数据库</li>
+<li>安装gem</li>
+<li>重启Passenger</li>
+<li>……</li>
+</ul>
+<p>这些事情，可以想到的话，就可以手动来做；但是等下，要Capistrano是做什么的……
+没错，到了这一步，就可以显示Capistrano的威力了：自动化部署。以上的事情可以全交给它来做，当然前提是要写一份自动化部署的脚本。</p>
+<p>首先，在开发环境的项目根目录中执行命令：</p>
+<pre><code class="language-shell">$ capify
+[add] writing './Capfile'
+[add] writing './config/deploy.rb'
+[done] capified!
+
+// Capistrano3中使用下面的命令
+$ cap install
+</code></pre>
+<p>现在多出来了两个文件：<code>Capfile</code>和<code>deploy.rb</code>，前者是Capistrano对Rakefile的模拟，不需要改动，后者是一个自动化的脚本，需要编辑的就是这个。这个文件里需要用到一些Capistrano的DSL，可以看<a href="https://github.com/capistrano/capistrano/wiki/2.x-Getting-Started" target="_blank" rel="noopener">这里</a>
+参考。在此给出一份比较简单的脚本作为参考，它是上面命令生成的默认脚本。</p>
+<pre><code class="language-ruby"># config valid only for Capistrano 3.1
+lock '3.1.0'
+
+set :application, 'my_app_name'
+set :repo_url, 'git@example.com:me/my_repo.git'
+
+namespace :deploy do
+
+  desc 'Restart application'
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      # Your restart mechanism here, for example:
+      # execute :touch, release_path.join('tmp/restart.txt')
+    end
+  end
+
+  after :publishing, :restart
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      	  #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+end
+</code></pre>
+<p>在修改好<code>:application</code>、<code>:repo_url</code>等值后，就可以开始进行部署了。
+第一次部署的时候，请运行：</p>
+<pre><code>$ cap deploy:setup
+</code></pre>
+<p>之后会要求输入服务器密码。连接成功后会在生产服务器上生成必要的目录。</p>
+<p>如果想测试配置，看还有没有别的问题，可以运行：</p>
+<pre><code>$ cap deploy:check
+</code></pre>
+<p>一旦解决完所有问题，就可以运行下面的命令，进行数据库生成，并完成部署：</p>
+<pre><code>$ cap deploy:migrate
+$ cap deploy
+</code></pre>
+<p>至此，就已经把项目部署到生产服务器上了。</p>
+<h2 id="版本控制推进部署">版本控制推进部署</h2>
+<p>已经部署完了么？</p>
+<p>并不是这样的，不要忽视掉最开始强调版本控制的用意。Capistrano能让你在持续开发的情况下进行版本推进部署，而操作非常简单。每次做好提交、并把版本库推送到远端后，就可以运行<code>cap deploy</code>进行部署。</p>
+<p>如果有某些原因，需要回到上一个部署的版本，执行命令：</p>
+<pre><code>$ cap deploy:rollback
+</code></pre>
+<h1 id="这就完了">这就完了？</h1>
+<p>没错！整个部署的过程就是这样。</p>
+<p>如果想掌握关于它的高级用法，可以看<a href="https://github.com/capistrano/capistrano/wiki" target="_blank" rel="noopener">Wiki</a>
+文档。</p>
+<p>本文只是以Rails为例讲解了Capistrano的用法，实际上它还可以用来部署其他语言写的Web应用程序，比如Java、PHP、Python等，读者有兴趣的话可以继续探索下去。</p>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="./tags/rails/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#rails</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+        <span class="text-primary-text block font-bold"
+          >上一页</span
+        >
+        <a href="./technology/restful-web/" class="block">RESTful Web</a>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一页</span>
+        <a href="./technology/git-hooks-ii/" class="block">Git Hooks (II)：脚本分类</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>本页内容</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置部署服务器">配置部署服务器</a></li>
+    <li><a href="#对应用进行版本控制">对应用进行版本控制</a></li>
+    <li><a href="#远程部署应用程序">远程部署应用程序</a></li>
+    <li><a href="#版本控制推进部署">版本控制推进部署</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://blog.oripd.com/">Original Paradigm</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" target="_blank" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" target="_blank" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>
