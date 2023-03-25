@@ -2,64 +2,64 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 风沙星辰</title>
-    <link>./tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on 风沙星辰</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Mon, 09 May 2016 16:36:01 +0000</lastBuildDate><atom:link href="./tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 May 2016 16:36:01 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DFS</title>
-      <link>./tags/dfs/</link>
+      <link>/tags/dfs/</link>
       <pubDate>Mon, 09 May 2016 16:36:01 +0000</pubDate>
       
-      <guid>./tags/dfs/</guid>
+      <guid>/tags/dfs/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>./tags/linux/</link>
+      <link>/tags/linux/</link>
       <pubDate>Sun, 24 Apr 2016 12:17:30 +0000</pubDate>
       
-      <guid>./tags/linux/</guid>
+      <guid>/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>design</title>
-      <link>./tags/design/</link>
+      <link>/tags/design/</link>
       <pubDate>Tue, 27 May 2014 00:00:00 +0800</pubDate>
       
-      <guid>./tags/design/</guid>
+      <guid>/tags/design/</guid>
       <description></description>
     </item>
     
     <item>
       <title>git</title>
-      <link>./tags/git/</link>
+      <link>/tags/git/</link>
       <pubDate>Wed, 21 May 2014 00:00:00 +0800</pubDate>
       
-      <guid>./tags/git/</guid>
+      <guid>/tags/git/</guid>
       <description></description>
     </item>
     
     <item>
       <title>REST</title>
-      <link>./tags/rest/</link>
+      <link>/tags/rest/</link>
       <pubDate>Thu, 01 May 2014 00:00:00 +0800</pubDate>
       
-      <guid>./tags/rest/</guid>
+      <guid>/tags/rest/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rails</title>
-      <link>./tags/rails/</link>
+      <link>/tags/rails/</link>
       <pubDate>Wed, 12 Feb 2014 17:40:30 +0000</pubDate>
       
-      <guid>./tags/rails/</guid>
+      <guid>/tags/rails/</guid>
       <description></description>
     </item>
     

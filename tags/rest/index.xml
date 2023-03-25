@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>REST on 风沙星辰</title>
-    <link>./tags/rest/</link>
+    <link>/tags/rest/</link>
     <description>Recent content in REST on 风沙星辰</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Thu, 01 May 2014 00:00:00 +0800</lastBuildDate><atom:link href="./tags/rest/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 01 May 2014 00:00:00 +0800</lastBuildDate><atom:link href="/tags/rest/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>RESTful Web</title>
-      <link>./technology/restful-web/</link>
+      <link>/technology/restful-web/</link>
       <pubDate>Thu, 01 May 2014 00:00:00 +0800</pubDate>
       
-      <guid>./technology/restful-web/</guid>
+      <guid>/technology/restful-web/</guid>
       <description>本文是Horizon第二次线下活动中“RESTful Web”讲题的总结，由主讲人整理。 REST的全称是Representational State Transfe</description>
     </item>
     

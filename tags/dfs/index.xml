@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DFS on 风沙星辰</title>
-    <link>./tags/dfs/</link>
+    <link>/tags/dfs/</link>
     <description>Recent content in DFS on 风沙星辰</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Mon, 09 May 2016 16:36:01 +0000</lastBuildDate><atom:link href="./tags/dfs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 May 2016 16:36:01 +0000</lastBuildDate><atom:link href="/tags/dfs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Resources about distributed file system</title>
-      <link>./technology/dfs/</link>
+      <link>/technology/dfs/</link>
       <pubDate>Mon, 09 May 2016 16:36:01 +0000</pubDate>
       
-      <guid>./technology/dfs/</guid>
+      <guid>/technology/dfs/</guid>
       <description>Wiki Clustered file system Category: Distributed file system Distributed file system (Microsoft) Distributed file system - TechNet Distributed file system - MSDN Books NFS Illustrated 1st Edition Papers &amp;amp; Conferences FAST (Usenix Conference on File and Storage Technologies) The collected works of Garth Gibson Scale and Performance in a Distributed Filesystem Separating data and control transfer in distributed operating systems Zebra Design and Implementation of the Sun Network Filesystem Disconnected Operation in the Coda Filesystem The Google File System Frangipani: A Scalable Distributed Filesystem CEPH: A Scalable, High-performance Distributed Filesystem Courses The 6.</description>
     </item>
     
