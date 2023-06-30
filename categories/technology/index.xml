@@ -8,16 +8,7 @@
     <language>zh</language>
     <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Wed, 28 Jun 2023 14:09:17 +0000</lastBuildDate><atom:link href="/categories/technology/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>与ChatGPT讨论Iceberg的管理与优化问题</title>
-      <link>/technology/discussing-iceberg-with-chatgpt/</link>
-      <pubDate>Wed, 28 Jun 2023 14:09:17 +0000</pubDate>
-      
-      <guid>/technology/discussing-iceberg-with-chatgpt/</guid>
-      <description>背景 在尝试使用Iceberg后，笔者发现，尽管Iceberg有着高度开放的提纲挈领式的Table Spec，并且官方提供了多种组合式API来方便开发者对</description>
-    </item>
-    
+    <lastBuildDate>Mon, 05 Dec 2016 12:20:36 +0000</lastBuildDate><atom:link href="/categories/technology/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>快速上手新编程语言的概要</title>
       <link>/technology/learning-new-program-language/</link>
