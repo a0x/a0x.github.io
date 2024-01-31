@@ -8,7 +8,43 @@
     <language>zh</language>
     <copyright>&amp;copy; 2023 &lt;a href=&#34;https://blog.oripd.com/&#34;&gt;Original Paradigm&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Wed, 28 Jun 2023 14:09:17 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Jan 2024 11:40:30 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>airflow</title>
+      <link>/tags/airflow/</link>
+      <pubDate>Tue, 30 Jan 2024 11:40:30 +0000</pubDate>
+      
+      <guid>/tags/airflow/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>mysql</title>
+      <link>/tags/mysql/</link>
+      <pubDate>Tue, 30 Jan 2024 11:40:30 +0000</pubDate>
+      
+      <guid>/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>/tags/postgresql/</link>
+      <pubDate>Tue, 30 Jan 2024 11:40:30 +0000</pubDate>
+      
+      <guid>/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据迁移</title>
+      <link>/tags/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</link>
+      <pubDate>Tue, 30 Jan 2024 11:40:30 +0000</pubDate>
+      
+      <guid>/tags/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>chatgpt</title>
       <link>/tags/chatgpt/</link>

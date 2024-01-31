@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html
+  lang="zh"
+  dir="ltr"
+  
+><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Airflow迁移：从MySQL5.7到PostgreSQL13 - 风沙星辰</title>
+
+<meta name="generator" content="Hugo Eureka 0.9.3" />
+<link rel="stylesheet" href="/css/eureka.min.285ffbef699dc9f3cf8dcb0803da149f8b646794b7f78a37380928daea2d746cd084512d0a3b592c47d0c71a18a88c7d.css">
+<script defer src="/js/eureka.min.fa9a6bf6d7a50bb635b4cca7d2ba5cf3dfb095ae3798773f1328f7950028b48c17d06276594e1b5f244a25a6c969a705.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&amp;family=Noto&#43;Serif&#43;SC:wght@400;600;700&amp;display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/styles/base16/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/highlight.min.js"
+   crossorigin></script>
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.4.0/build/languages/dart.min.js"
+     crossorigin></script>
+<link rel="stylesheet" href="/css/highlightjs.min.2958991528e43eb6fc9b8c4f2b8e052f79c4010718e1d1e888a777620e9ee63021c2c57ec7417a3108019bb8c41943e6.css" media="print" onload="this.media='all';this.onload=null">
+
+
+<script defer type="text/javascript" src="/js/fontawesome.min.7ecdf591e18d9b7d9a9acfee01f5545be9b15d3fb9a6235fc83f0f7b48df77c7d3fd123037395d75224bf17af86143c1.js"></script>
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+   integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js" 
+  integrity="sha384-VQ8d8WVFw0yHhCk5E8I86oOhv48xLpnDZx5T9GogA/Y84DcCKWXDmSDfn13bzFZY"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+   integrity="sha384-&#43;XBljXPPiv&#43;OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js" 
+  integrity="sha384-atOyb0FxAgN9LyAc6PEf9BjgwLISyansgdH8/VXQH8p2o5vfrRgmGIJ2Sg22L0A0"  crossorigin></script>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+<script async src="https://www.googletagmanager.com/gtag/js?id=370947580"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', '370947580');
+</script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_32x32_fill_q75_box_center.jpg">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/icon_hu3dc7f58c98233f3bfad994ccae960fef_141990_180x180_fill_q75_box_center.jpg">
+
+<meta name="description"
+  content="介绍一种安全便捷的跨数据库迁移方式">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Technologies",
+      "item":"/technology/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Airflow迁移：从MySQL5.7到PostgreSQL13",
+      "item":"/technology/airflow-migration-from-mysql-to-pg/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/technology/airflow-migration-from-mysql-to-pg/"
+    },
+    "headline": "Airflow迁移：从MySQL5.7到PostgreSQL13 - 风沙星辰","datePublished": "2024-01-30T11:40:30+00:00",
+    "dateModified": "2024-01-30T11:40:30+00:00",
+    "wordCount":  3227 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "Yun LEE",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "/images/icon.jpg"
+        }
+        },
+    "description": "介绍一种安全便捷的跨数据库迁移方式"
+}
+</script><meta property="og:title" content="Airflow迁移：从MySQL5.7到PostgreSQL13 - 风沙星辰" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="/images/icon.jpg">
+
+
+<meta property="og:url" content="/technology/airflow-migration-from-mysql-to-pg/" />
+
+
+
+<meta property="og:description" content="介绍一种安全便捷的跨数据库迁移方式" />
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="风沙星辰" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2024-01-30T11:40:30&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2024-01-30T11:40:30&#43;00:00" />
+
+
+
+<meta property="article:section" content="technology" />
+
+
+<meta property="article:tag" content="airflow" />
+
+<meta property="article:tag" content="mysql" />
+
+<meta property="article:tag" content="postgresql" />
+
+<meta property="article:tag" content="数据迁移" />
+
+
+
+
+
+
+  <body class="flex min-h-screen flex-col">
+    <header
+      class="min-h-16 pl-scrollbar bg-secondary-bg fixed z-50 flex w-full items-center shadow-sm"
+    >
+      <div class="mx-auto w-full max-w-screen-xl"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="me-6 text-primary-text text-xl font-bold">风沙星辰</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/essays" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">✎ 随笔</a>
+            <a href="/technology" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  me-4">🖳 堆栈</a>
+            <a href="/books" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  me-4">🕮 书籍</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col start-0 md:start-auto end-auto md:end-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+    </header>
+    <main class="grow pt-16">
+        <div class="pl-scrollbar">
+          <div class="mx-auto w-full max-w-screen-xl lg:px-4 xl:px-8">
+  
+  
+  <div class="grid grid-cols-2 gap-4 lg:grid-cols-8 lg:pt-12">
+    <div
+      class=" bg-secondary-bg col-span-2 rounded px-6 py-8 lg:col-span-6"
+    >
+      <article class="prose">
+  <h1 class="mb-4">Airflow迁移：从MySQL5.7到PostgreSQL13</h1>
+
+  <div
+  class="text-tertiary-text not-prose mt-2 flex flex-row flex-wrap items-center"
+>
+  <div class="me-6 my-2">
+    <i class="fas fa-calendar me-1"></i>
+    <span
+      >2024-01-30</span
+    >
+  </div>
+  <div class="me-6 my-2">
+    <i class="fas fa-clock me-1"></i>
+    <span>7分钟阅读时长</span>
+  </div>
+
+  
+    <div class="me-6 my-2">
+      <i class="fas fa-folder me-1"></i>
+      
+        <a href="/categories/technology/" class="hover:text-eureka"
+          >technology</a
+        >
+      
+    </div>
+  
+
+  
+</div>
+
+
+  
+  
+
+  <h2 id="背景与场景">背景与场景</h2>
+<p>Airflow是数据工程领域内的一个非常受欢迎的调度框架，其对PostgreSQL（以下简称PG）的支持远好于MySQL。同时，在更广泛的全球化开发者社区内，尤其是在数据应用场景中，PG比MySQL更受人青睐。</p>
+<p>而中国大陆的技术环境内，谈起数据库，尽管PostgreSQL（下文简称PG）比MySQL的功能更强大、生态更完善，但MySQL的开发者亲和性似乎更胜一筹。这就造成了Airflow + MySQL的技术组合，尽管这种技术组合能够满足基本的程序运行，但在大规模、高频率调度场景和使用Airflow高级功能时，总会遇到各种难缠的问题。</p>
+<p>笔者手边恰好有一套这样的环境，这套环境运行着相对老旧的（四年前的）Airflow版本，这次趁版本升级之际，有机会把一些曾经屡次出现的问题一劳永逸解决掉，也就是说，可以做一次从MySQL到PG的数据迁移。</p>
+<h2 id="技术路径分析">技术路径分析</h2>
+<h3 id="rdmbs的导出与导入">RDMBS的导出与导入</h3>
+<p>从RDBMS的角度分析这个问题，最简单的做法可以是：把数据从MySQL导出，然后再导入PG。</p>
+<p>这种做法在今天看来，存在三个问题：</p>
+<ol>
+<li>导出和导入的载体是文本，无法承载二进制数据（如JSON、Binary等数据类型）</li>
+<li>对于大单表缺乏并发性，性能低</li>
+<li>对于跨库场景，无法做到严谨的类型映射</li>
+</ol>
+<p>这三个问题恰恰是这个数据迁移场景中最关键的三个问题。</p>
+<h3 id="二进制的做法">二进制的做法</h3>
+<p>在这个场景中，最关键的一点是，对于二进制数据类型，考虑到信息丢失和JSON转化的麻烦，肯定是不能做文本化处理，因此一定需要使用二进制的数据传输方式。</p>
+<p>经过思考和调研，一共发现三种实现途径：</p>
+<ul>
+<li>Binary Serialization</li>
+<li>pgloader</li>
+<li>Spark</li>
+</ul>
+<h4 id="binary-serialization">Binary Serialization</h4>
+<p>既然不能转换为文本方式，那么可以用更安全的二进制序列化方式实现。</p>
+<p>秉着这个原则，笔者经过检索，最终确认，可以使用<code>protobuf</code>、<code>msgpack</code>等库来实现二进制序列化。那么其实在这种场景中，只需要三步即可实现迁移过程：</p>
+<ol>
+<li>用JDBC将数据从MySQL读出来</li>
+<li>二进制序列化</li>
+<li>用JDBC将数据写入PG</li>
+</ol>
+<p>以上三步确实可以完成整个迁移，不过在这之外，还会有一些workaround或者陷阱。</p>
+<p><strong>用Python语言可以吗？</strong></p>
+<p>理论上可以，实际上会比较困难。</p>
+<p>Python用以对接数据库的驱动包，本质上实现的是数据库的通信协议。对于MySQL来说，Python有两个不同的包，分别用C和Python实现了MySQL的通信协议。而不幸的是，笔者曾在过往的开发经验中，遇到过这两个版本驱动包在协议实现上的差异，这在数据不能有分毫误差的场景里是无法接受的。</p>
+<p>此外，Python软件生态惯有的低质量给笔者留下了非常不好的印象，笔者无法在严谨的工程中不经测试直接信任Python的软件包。</p>
+<p><strong>用ORM框架可以吗？</strong></p>
+<p>或许可以。</p>
+<p>对于一个成熟的ORM框架来说，应当处理好常见数据库的各种数据类型。但对于这种一次性操作来说，考虑到Python领域没有特别好用的ORM框架，Java的ORM又都特别繁重，引入一个ORM框架实在是徒增复杂性。</p>
+<p>经过评估，引入ORM的开发量和使用二进制序列化的开发繁琐程度没有差太多。</p>
+<p><strong>读出数据直接INSRET INTO可以吗？</strong></p>
+<p>不可以。</p>
+<p>写成<code>INSERT INTO</code>的形式，就是文本序列化。</p>
+<h4 id="pgloader">pgloader</h4>
+<p><code>pgloader</code>是PG生态里的一个工具，由Common Lisp写成，专门用于针对PG的数据迁移场景。</p>
+<p>原本对该方法寄予厚望，但在尝试过程中，屡次遇到无法解决的奇怪bug，遂作罢。</p>
+<h4 id="spark">Spark</h4>
+<p>在如今Datalake大行其道的时代，数据搬运是一件再平常不过的事情。而在这个具体的场景中，前文说到使用Binary Serialization方法中的三步，Spark恰好能完美契合，所以这就成了试错成本最低的方法：只需用Spark将数据读出来、写进去就好。</p>
+<p><strong>后来的实践证明，这是最简单、最可行、综合成本最低的方法。</strong></p>
+<h2 id="生产环境实践操作">生产环境实践操作</h2>
+<blockquote>
+<p>本小节代码仅做演示，不代表真实运行情况。</p>
+<p>实际环境的代码应当环境实际情况进行调整。</p>
+</blockquote>
+<p>借用Spark的能力，生产环境实操变得非常简单，共包含以下几步：</p>
+<ol>
+<li>在PG中建立新的Airflow数据库，名为<code>airflow_pg</code>，注意这个数据库需要是空的
+<pre><code class="language-shell"># 1. 初始化Airflow数据库
+airflow db init
+# 2. 导出数据库表结构
+pg_dump -d airflow_pg -s -f airflow_pg_schema.sql
+# 3.删除刚刚新建的数据库，使用表结构重建Airflow数据库
+psql -c 'DROP DATABASE airflow_pg; CREATE DATABASE airflow_pg'
+psql -c '\c airflow_pg' -f airflow_pg_schema.sql
+</code></pre>
+</li>
+<li>对<code>airflow_pg</code>解除主外键约束
+<pre><code class="language-sql">-- 根据Airflow实际版本确认有哪些表
+alter table ab_permission disable trigger all;
+alter table ab_permission_view disable trigger all;
+alter table ab_permission_view_role disable trigger all;
+alter table ab_register_user disable trigger all;
+alter table ab_role disable trigger all;
+alter table ab_user disable trigger all;
+alter table ab_user_role disable trigger all;
+alter table ab_view_menu disable trigger all;
+alter table alembic_version disable trigger all;
+alter table connection disable trigger all;
+alter table dag disable trigger all;
+alter table dag_code disable trigger all;
+alter table dag_pickle disable trigger all;
+alter table dag_run disable trigger all;
+alter table dag_tag disable trigger all;
+alter table import_error disable trigger all;
+alter table job disable trigger all;
+alter table log disable trigger all;
+alter table rendered_task_instance_fields disable trigger all;
+alter table sensor_instance disable trigger all;
+alter table serialized_dag disable trigger all;
+alter table sla_miss disable trigger all;
+alter table slot_pool disable trigger all;
+alter table task_fail disable trigger all;
+alter table task_instance disable trigger all;
+alter table task_reschedule disable trigger all;
+alter table variable disable trigger all;
+alter table xcom disable trigger all;
+alter table celery_taskmeta disable trigger all;
+alter table celery_tasksetmeta disable trigger all;
+</code></pre>
+</li>
+<li>使用Spark读取<code>airflow_mysql</code>数据，并依次写入<code>airflow_pg</code>
+<pre><code class="language-Python"># 根据Airflow实际情况确定哪些表需要迁移
+# 注意：
+#   1. 如`log`、`celery_taskmeta`表不需要迁移
+#   2. option('stringtype', 'unspecified')的作用是正确处理表中二进制字段
+df = spark.read.format('jdbc')...
+df.write.format('jdbc')\
+    .option('stringtype', 'unspecified')\
+    ...
+</code></pre>
+</li>
+<li>在<code>airflow_pg</code>中指定各个自增主键的位置，对应到各个表ID的最大值
+<pre><code class="language-sql">-- 根据Airflow实际版本确认有哪自增主键
+ select setval('ab_permission_id_seq', (select max(id) from ab_permission));
+ select setval('ab_permission_view_id_seq', (select max(id) from ab_permission_view));
+ select setval('ab_permission_view_role_id_seq', (select max(id) from ab_permission_view_role));
+ select setval('ab_register_user_id_seq', (select max(id) from ab_register_user));
+ select setval('ab_role_id_seq', (select max(id) from ab_role));
+ select setval('ab_user_id_seq', (select max(id) from ab_user));
+ select setval('ab_user_role_id_seq', (select max(id) from ab_user_role));
+ select setval('ab_view_menu_id_seq', (select max(id) from ab_view_menu));
+ select setval('connection_id_seq', (select max(id) from connection));
+ select setval('dag_pickle_id_seq', (select max(id) from dag_pickle));
+ select setval('dag_run_id_seq', (select max(id) from dag_run));
+ select setval('import_error_id_seq', (select max(id) from import_error));
+ select setval('job_id_seq', (select max(id) from job));
+ select setval('log_id_seq', (select max(id) from log));
+ select setval('sensor_instance_id_seq', (select max(id) from sensor_instance));
+ select setval('slot_pool_id_seq', (select max(id) from slot_pool));
+ select setval('task_fail_id_seq', (select max(id) from task_fail));
+ select setval('task_reschedule_id_seq', (select max(id) from task_reschedule));
+ select setval('variable_id_seq', (select max(id) from variable));
+</code></pre>
+</li>
+<li>恢复<code>airflow_pg</code>的主外键约束
+<pre><code class="language-sql">-- 根据Airflow实际版本确认有哪些表
+ alter table ab_permission enable trigger all;
+ alter table ab_permission_view enable trigger all;
+ alter table ab_permission_view_role enable trigger all;
+ alter table ab_register_user enable trigger all;
+ alter table ab_role enable trigger all;
+ alter table ab_user enable trigger all;
+ alter table ab_user_role enable trigger all;
+ alter table ab_view_menu enable trigger all;
+ alter table alembic_version enable trigger all;
+ alter table connection enable trigger all;
+ alter table dag enable trigger all;
+ alter table dag_code enable trigger all;
+ alter table dag_pickle enable trigger all;
+ alter table dag_run enable trigger all;
+ alter table dag_tag enable trigger all;
+ alter table import_error enable trigger all;
+ alter table job enable trigger all;
+ alter table log enable trigger all;
+ alter table rendered_task_instance_fields enable trigger all;
+ alter table sensor_instance enable trigger all;
+ alter table serialized_dag enable trigger all;
+ alter table sla_miss enable trigger all;
+ alter table slot_pool enable trigger all;
+ alter table task_fail enable trigger all;
+ alter table task_instance enable trigger all;
+ alter table task_reschedule enable trigger all;
+ alter table variable enable trigger all;
+ alter table xcom enable trigger all;
+ alter table celery_taskmeta enable trigger all;
+ alter table celery_tasksetmeta enable trigger all;
+</code></pre>
+</li>
+</ol>
+<p>在完成上述五步后，可以将<code>airflow.cfg</code>文件中数据库地址改为PG地址，并重启Airflow服务，即可完成Airflow底层数据库的迁移和更换。</p>
+<h2 id="后记">后记</h2>
+<p>在中国大陆技术生态中，提起数据库，MySQL一定是首先被考虑的，因为其历史原因，因为它的“简单”、“易用”；又因为一些历史的惯性，到2020年后还会有人选择MySQL 5.7作为业务数据库。</p>
+<p>笔者并非站在技术主义制高点去指责这些技术乱象，然而，不假思索、不考虑具体业务场景和技术生态，就想“一库走天下”，这是极其不负责任的。</p>
+<p>PG与MySQL孰高孰低自不必说，不了解OLAP领域和PG社区的开发者总是会想当然认为，MySQL与PG差别不是太大，但事实显然不是这样。</p>
+<p>而在具体的技术生态中，例如Python、Ruby与PG的亲和性，以及Python两个MySQL包的实现差异，这些恐怕一般广泛意义上的开发者并不十分知晓。</p>
+<p>所以，作为一名开发者，我仍然建议，要在技术领域多见见世面，多尝试一些新东西，多去深挖一些重要的细节。</p>
+<p>而另一个有趣的问题，是关于技术路径的选择和具体实现。</p>
+<p>比如这种跨库数据迁移，很多人想当然会使用各种dump工具，也会有一部分人会想到利用Kettle这样的工具来做。这些想法并未触及这个场景的本质——数据转换。</p>
+<p>二进制能转换成文本吗？不能。</p>
+<p>用Kettle鼠标操作点半天，用Spark 20分钟迁完了。</p>
+<p>选择技术路径，最关键的是要理解技术场景中最根本的需求，比如这个场景的本质就是：把MySQL的数据完整转换成PG的数据，并且保证数据本身、主外键、自增索引不变。那这就不是一个数据迁移的问题了，而是数据序列化的问题。</p>
+<p>认识到数据序列化的问题，再考虑到序列化的三个步骤，最简单的工具自然能够信手拈来。</p>
+<p>而技术路径的选择与实现，考验的就是人对 <strong>“技术”</strong> 其本身的理解。</p>
+
+</article>
+
+
+      
+        <div class="my-4">
+    
+    <a href="/tags/airflow/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#airflow</a>
+    
+    <a href="/tags/mysql/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#mysql</a>
+    
+    <a href="/tags/postgresql/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#postgresql</a>
+    
+    <a href="/tags/%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 me-2 hover:text-eureka">#数据迁移</a>
+    
+</div>
+      
+
+      
+
+
+
+      
+
+      
+  <div
+    class="-mx-2 mt-4 flex flex-col border-t px-2 pt-4 md:flex-row md:justify-between"
+  >
+    <div>
+      
+    </div>
+    <div class="mt-4 md:mt-0 md:text-right">
+      
+        <span class="text-primary-text block font-bold">下一页</span>
+        <a href="/technology/discussing-iceberg-with-chatgpt/" class="block">与ChatGPT讨论Iceberg的管理与优化问题</a>
+      
+    </div>
+  </div>
+
+
+      
+
+
+
+  
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "alvinqi" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+    
+      <div class="col-span-2">
+        
+        
+          <div
+  class="
+    bg-primary-bg
+   prose sticky top-16 z-10 hidden px-6 py-4 lg:block"
+>
+  <h3>本页内容</h3>
+</div>
+<div
+  class="sticky-toc  hidden px-6 pb-6 lg:block"
+>
+  <nav id="TableOfContents">
+  <ul>
+    <li><a href="#背景与场景">背景与场景</a></li>
+    <li><a href="#技术路径分析">技术路径分析</a>
+      <ul>
+        <li><a href="#rdmbs的导出与导入">RDMBS的导出与导入</a></li>
+        <li><a href="#二进制的做法">二进制的做法</a>
+          <ul>
+            <li><a href="#binary-serialization">Binary Serialization</a></li>
+            <li><a href="#pgloader">pgloader</a></li>
+            <li><a href="#spark">Spark</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#生产环境实践操作">生产环境实践操作</a></li>
+    <li><a href="#后记">后记</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    enableStickyToc();
+  });
+</script>
+
+        
+      </div>
+    
+
+    
+    
+  </div>
+
+  
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        hljs.highlightAll();
+      });
+    </script>
+
+          </div>
+        </div>
+      
+    </main>
+    <footer class="pl-scrollbar">
+      <div class="mx-auto w-full max-w-screen-xl"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2023 <a href="https://blog.oripd.com/">Original Paradigm</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" target="_blank" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" target="_blank" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+    </footer>
+  </body>
+</html>
